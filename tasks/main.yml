@@ -1,0 +1,5 @@
+---
+# tasks file for base-platform
+- import_tasks: packages.yml
+- import_tasks: platform.yml
+# - import_tasks: languages.yml

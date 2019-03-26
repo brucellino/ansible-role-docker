@@ -1,0 +1,26 @@
+---
+- name: Ensure global npm packages are present
+  npm:
+    name: "{{ item }}"
+    global: true
+    state: present
+    production: true
+  loop: "{{ npm.packages }}"
+- name: Ensure python global packages are present
+  pip:
+    requirements: "{{ item }}"
+    state: present
+  with_fileglob: "requirements.txt"
+- name: What is the role path?
+  debug:
+    var: role_path
+- name: bundle the gems
+  become: false
+  remote_user: becker
+  bundler:
+    gemfile: "{{ role_path }}/files/Gemfile"
+    clean: no
+    user_install: yes
+    state: present
+  tags:
+    - gems

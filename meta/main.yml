@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  author: Bruce Becker
+  description: role for provisioning the base platform for Docker
+  company: none
+  license: MIT
+  min_ansible_version: 2.7
+  platforms:
+    - name: Debian
+      version: bionic
+  galaxy_tags: []
+dependencies: []

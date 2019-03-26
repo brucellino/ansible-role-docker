@@ -1,0 +1,44 @@
+---
+- name: Ensure repositories are configured
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: false
+    mode: "0644"
+    validate_certs: true
+  loop: "{{ deb_repositories }}"
+  tags:
+    - apt
+    - repos
+
+- name: Ensure base packages are installed
+  package:
+    state: present
+    name: "{{ item }}"
+    use: auto
+  loop: "{{ base_packages}}"
+  tags:
+    - packages
+- name: Ensure that the rest of the packages are installed
+  package:
+    state: present
+    name: "{{ item }}"
+    use: auto
+  loop: "{{ packages }}"
+  tags:
+    - packages
+- name: Install keybase
+  apt:
+    autoremove: no
+    force: no
+    force_apt_get: yes
+    update_cache: no
+    only_upgrade: no
+    deb: "{{ item }}"
+    state: present
+    install_recommends: true
+  notify: run keybase
+  loop: "{{ extra_packages }}"
+  tags:
+    - keybase
+    - extra_packages
