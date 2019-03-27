@@ -15,7 +15,7 @@ def test_hosts_file(host):
 
 
 def test_docker(host):
-    pkg = host.package('docker')
+    pkg = host.package('docker-ce')
     assert pkg.is_installed
     docker_service = host.service('docker')
     assert docker_service.is_running
