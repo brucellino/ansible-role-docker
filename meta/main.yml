@@ -3,6 +3,7 @@ galaxy_info:
   author: Bruce Becker
   description: role for provisioning the base platform for Docker
   company: none
+  role_name: docker
   license: MIT
   min_ansible_version: 2.7
   platforms:
