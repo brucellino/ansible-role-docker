@@ -8,9 +8,7 @@ deb_repositories:
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates universe
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic multiverse
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates multiverse
-  - |
-    deb http://it.archive.ubuntu.com/ubuntu/ \
-    bionic-backports main restricted universe multiverse
+  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
   - deb http://archive.canonical.com/ubuntu bionic partner
   - deb http://security.ubuntu.com/ubuntu bionic-security main restricted
   - deb http://security.ubuntu.com/ubuntu bionic-security universe
