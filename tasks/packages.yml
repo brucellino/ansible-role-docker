@@ -16,7 +16,7 @@
     state: present
     name: "{{ item }}"
     use: auto
-  loop: "{{ base_packages}}"
+  loop: "{{ base_packages }}"
   tags:
     - packages
 - name: Ensure that the rest of the packages are installed

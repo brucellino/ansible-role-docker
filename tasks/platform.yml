@@ -42,7 +42,7 @@
 - name: Install Docker Compose
   get_url:
     dest: "{{ docker.compose_path }}/docker-compose"
-    url: "{{docker.compose_url}}/{{ docker.compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+    url: "{{ docker.compose_url }}/{{ docker.compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
     backup: no
     force: no
     sha256sum: "{{ docker.compose_sha2 }}"
