@@ -1,10 +1,10 @@
-# Base Platform
+# Docker role
 
-This role provides the base platform for a Jenkins build host.
+This role provides Docker on an Ubuntu bionic base, intended for a Jenkins build host.
 
 ## Requirements
 
-Just a working OS and a sudo enabled user are required. The role is expected to be applied on something like a vanilla Ubuntu AMI.
+A working OS and a sudo enabled user are required. The role is expected to be applied on something like a vanilla Ubuntu AMI.
 
 ## Role Variables
 
@@ -17,17 +17,16 @@ Variables are described in `default/main.yml`. They include:
 - `docker`: Variables necessary to have the Docker Engine present
 - `npm`: NPM packages and Node tools
 
-
 ## Dependencies
 
-None
+The EC2 module requires the boto pip module.
 
 ## Example Playbook
 
 ```
 - hosts: localhost
   roles:
-      - { role: base-platform, become: true }
+      - { role: brucellino.docker, become: true }
 ```
 
 ## License
