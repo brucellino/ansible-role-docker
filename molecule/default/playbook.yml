@@ -5,22 +5,24 @@
   roles:
     - role: ansible-role-docker
   pre_tasks:
-    slack:
-      token: "{{ slack_token | default('none')}}"
-      username: Ansible
-      color: warning
-      parse: full
-      link_names: 1
-      msg: "Starting test of docker role on EC2"
-      validate_certs: yes
-    failed_when: false
+    - name: "notify team of start"
+      slack:
+        token: "{{ slack_token | default('none')}}"
+        username: Ansible
+        color: warning
+        parse: full
+        link_names: 1
+        msg: "Starting test of docker role on EC2"
+        validate_certs: yes
+      failed_when: false
   post_tasks:
-    slack:
-      token: "{{ slack_token | default('none')}}"
-      username: Ansible
-      color: warning
-      parse: full
-      link_names: 1
-      msg: "Test of Docker role on EC2 has completed"
-      validate_certs: yes
-    failed_when: false
+    - name: Notify team of the completion
+      slack:
+        token: "{{ slack_token | default('none')}}"
+        username: Ansible
+        color: warning
+        parse: full
+        link_names: 1
+        msg: "Test of Docker role on EC2 has completed"
+        validate_certs: yes
+      failed_when: false
