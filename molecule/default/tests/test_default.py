@@ -16,7 +16,9 @@ def test_hosts_file(host):
 
 def test_docker(host):
     pkg = host.package('docker-ce')
+    docker_socket = host.socket("unix:///var/run/docker.sock")
     assert pkg.is_installed
     docker_service = host.service('docker')
     assert docker_service.is_running
     assert docker_service.is_enabled
+    assert docker_socket.is_listening

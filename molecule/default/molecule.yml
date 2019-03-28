@@ -7,7 +7,7 @@ lint:
   name: yamllint
 platforms:
   - name: test-instance
-    image: ami-0b5a2788ae89f99ff
+    image: ami-0204cddbf060b2420
     instance_type: t2.micro
     vpc_subnet_id: subnet-05e9574d
     region: eu-west-1
