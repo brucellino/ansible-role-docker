@@ -11,9 +11,6 @@
     requirements: "{{ item }}"
     state: present
   with_fileglob: "requirements.txt"
-- name: What is the role path?
-  debug:
-    var: role_path
 - name: bundle the gems
   become: false
   remote_user: becker
