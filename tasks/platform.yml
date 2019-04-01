@@ -28,9 +28,9 @@
     name: docker
     state: present
     gid: 200
-- name: Add my user to the group
+- name: Add jenkins user to the group
   user:
-    name: becker
+    name: jenkins
     groups: docker
     append: true
 - name: Docker should run on start

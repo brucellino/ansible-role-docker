@@ -27,7 +27,7 @@
   loop: "{{ packages }}"
   tags:
     - packages
-- name: Install keybase
+- name: Ensure extra packages are present
   apt:
     autoremove: no
     force: no

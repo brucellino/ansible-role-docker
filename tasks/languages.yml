@@ -8,12 +8,10 @@
   loop: "{{ npm.packages }}"
 - name: Ensure python global packages are present
   pip:
-    requirements: "{{ item }}"
+    requirements: "{{ lookup('fileglob','requirements.txt) }}'"
     state: present
-  with_fileglob: "requirements.txt"
 - name: bundle the gems
   become: false
-  remote_user: becker
   bundler:
     gemfile: "{{ role_path }}/files/Gemfile"
     clean: no
