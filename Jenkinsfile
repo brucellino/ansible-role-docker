@@ -1,39 +1,24 @@
 pipeline {
   agent {
     node {
-      label 'ec2'
+      label 'molecule'
     }
 
   }
   stages {
     stage('prepare') {
-      agent {
-        node {
-          label 'ec2'
-        }
-
-      }
       steps {
-        sh 'sudo apt-get install -y python-pip'
-        sh 'sudo pip install molecule'
-        sh 'which ansible'
+        sh 'molecule lint'
       }
     }
     stage('test') {
-      agent {
-        node {
-          label 'ec2'
-        }
-
-      }
       steps {
-        sh 'molecule create'
-        slackSend()
+        sh 'molecule test'
       }
     }
   }
   post {
-    always { slackSend () } 
+    always { slackSend (token: slack_token, message: "hi") } 
   }
   environment {
     slack_token = credentials('slack-token')

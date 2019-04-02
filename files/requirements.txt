@@ -24,8 +24,10 @@ coverage==4.5.2
 cryptography==2.6.1
 decorator==4.3.0
 docutils==0.14
-docker-py==1.10.6
+docker==3.7.2
 docker-compose==1.24.0
+docker-pycreds==0.4.0
+dockerpty==0.4.1
 enum34==1.1.6
 fasteners==0.14.1
 filelock==3.0.10
@@ -92,4 +94,3 @@ virtualenv==16.4.0
 Werkzeug==0.14.1
 whichcraft==0.5.2
 yamllint==1.11.1
-dopy
