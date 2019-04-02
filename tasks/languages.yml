@@ -8,7 +8,7 @@
   loop: "{{ npm.packages }}"
 - name: Ensure python global packages are present
   pip:
-    requirements: "{{ lookup('fileglob','requirements.txt) }}'"
+    requirements: "{{ lookup('fileglob','requirements.txt') }}'"
     state: present
 - name: bundle the gems
   become: false
