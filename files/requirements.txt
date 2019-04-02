@@ -24,6 +24,7 @@ coverage==4.5.2
 cryptography==2.6.1
 decorator==4.3.0
 docutils==0.14
+docker-py==1.10.6
 enum34==1.1.6
 fasteners==0.14.1
 filelock==3.0.10
