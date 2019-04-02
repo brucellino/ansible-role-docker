@@ -32,7 +32,10 @@ pipeline {
       }
     }
   }
+  post {
+    always { slackSend () } 
+  }
   environment {
-    slack_token = 'credentials(\'slack-token\')'
+    slack_token = credentials('slack-token')
   }
 }
