@@ -1,11 +1,17 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'ec2'
+    }
+
+  }
   stages {
     stage('prepare') {
       agent {
         node {
           label 'ec2'
         }
+
       }
       steps {
         sh 'sudo apt-get install -y python-pip'
@@ -14,14 +20,19 @@ pipeline {
       }
     }
     stage('test') {
-      agent { 
+      agent {
         node {
           label 'ec2'
         }
+
       }
       steps {
-        sh 'molecule test'
+        sh 'molecule create'
+        slackSend()
       }
     }
+  }
+  environment {
+    slack_token = 'credentials(\'slack-token\')'
   }
 }
