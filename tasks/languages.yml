@@ -6,16 +6,35 @@
     state: present
     production: true
   loop: "{{ npm.packages }}"
+- name: Copy requirements over
+  copy:
+    dest: /tmp/requirements.txt
+    src: requirements.txt
+    group: root
+    owner: root
+
 - name: Ensure python global packages are present
   pip:
-    requirements: "{{ lookup('fileglob','requirements.txt') }}'"
+    requirements: "requirements.txt"
+    chdir: /tmp
     state: present
+
+- name: Ensure Gemfiles are present
+  copy:
+    dest: "/tmp/{{ item }}"
+    src: "{{ item }}"
+    group: root
+    owner: root
+  loop:
+    - Gemfile
+    - Gemfile.lock
+
 - name: bundle the gems
-  become: false
   bundler:
-    gemfile: "{{ role_path }}/files/Gemfile"
+    gemfile: Gemfile
     clean: no
     user_install: yes
     state: present
+    chdir: /tmp
   tags:
     - gems
