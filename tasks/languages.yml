@@ -6,19 +6,30 @@
     state: present
     production: true
   loop: "{{ npm.packages }}"
+  tags:
+    - npm
+    - packages
 - name: Copy requirements over
   copy:
     dest: /tmp/requirements.txt
     src: requirements.txt
     group: root
     owner: root
-
+  tags:
+    - pip
+    - packages
 - name: Ensure python global packages are present
   pip:
     requirements: "requirements.txt"
     chdir: /tmp
     state: present
-
+  tags:
+    - pip
+    - packages
+- name: Ensure that docker-py is absent
+  pip:
+    name: docker-py
+    state: absent
 - name: Ensure Gemfiles are present
   copy:
     dest: "/tmp/{{ item }}"
@@ -28,7 +39,9 @@
   loop:
     - Gemfile
     - Gemfile.lock
-
+  tags:
+    - gems
+    - packages
 - name: bundle the gems
   bundler:
     gemfile: Gemfile
@@ -38,3 +51,4 @@
     chdir: /tmp
   tags:
     - gems
+    - packages

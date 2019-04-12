@@ -1,5 +1,5 @@
 import os
-
+import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -14,7 +14,7 @@ def test_hosts_file(host):
     assert f.group == 'root'
 
 
-def test_docker(host):
+def test_docker_socket(host):
     pkg = host.package('docker-ce')
     docker_socket = host.socket("unix:///var/run/docker.sock")
     assert pkg.is_installed
@@ -22,3 +22,14 @@ def test_docker(host):
     assert docker_service.is_running
     assert docker_service.is_enabled
     assert docker_socket.is_listening
+
+
+@pytest.mark.parametrize("username", [
+    "jenkins",
+    "root"
+])
+def test_docker_permissions(host, username):
+    docker_sock = host.file('/var/run/docker.sock')
+    assert docker_sock.user == 'root'
+    assert docker_sock.group == username
+    assert docker_sock.mode == '0o660'

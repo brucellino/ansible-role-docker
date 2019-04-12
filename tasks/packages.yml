@@ -19,6 +19,7 @@
   loop: "{{ base_packages }}"
   tags:
     - packages
+
 - name: Ensure that the rest of the packages are installed
   package:
     state: present
