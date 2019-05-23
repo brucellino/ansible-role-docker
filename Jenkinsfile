@@ -36,9 +36,9 @@ pipeline {
     }
   }
   post {
-    always { slackSend (token: slack_token, message: "hi") } 
+    always { slackSend (token: slack_token, message: "Job completed") } 
   }
   environment {
-    slack_token = credentials('slack-token')
+    slack_token = credentials('slack_hook')
   }
 }
