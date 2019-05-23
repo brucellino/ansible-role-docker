@@ -38,8 +38,6 @@
     deb: "{{ item }}"
     state: present
     install_recommends: true
-  notify: run keybase
   loop: "{{ extra_packages }}"
   tags:
-    - keybase
     - extra_packages

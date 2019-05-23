@@ -23,18 +23,10 @@ base_packages:
   - python3-apt
   # networking is kinda important
   - net-tools
-  - iptraf
-  - inetutils-traceroute
   # system packages
-  - inetutils-traceroute
-  - htop
-  - procps
   - zlib1g-dev
   - zlib1g
-  - default-jre
-  - openjdk-11-jre-headless
   # build stuff
-  - gradle
   - build-essential
   - git
   # shells
@@ -45,21 +37,12 @@ packages:
   - python-pip
   - python-virtualenv
   # ruby and friends
-  - ruby
-  - rubygems
-  - ruby-dev
-  - ruby-bundler
   # Javascript and friends
-  - jq
-  - npm
   # shell goodies
-  - licensecheck
   # cloud APIs
-  - awscli
 extra_packages: []
 gems:
   - inspec
-  # - droplet_kit
   - rubocop
   - aws-sdk
   - azure-core
