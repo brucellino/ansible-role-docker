@@ -33,7 +33,7 @@ def test_docker_permissions(host):
 
 def test_jenkins_docker_execution(host):
     with host.sudo("jenkins"):
-         assert "Docker version 18.09.6" in host.check_output("docker --version")
+        assert "Docker version 18.09.6" in host.check_output("docker --version")
     with host.sudo("ubuntu"):
-         with pytest.raises(AssertionError):
+        with pytest.raises(AssertionError):
             host.run_test("docker run --rm hello-world")
