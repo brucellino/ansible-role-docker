@@ -13,13 +13,11 @@ pipeline {
     }
     stage('converge') {
       steps {
-         withCredentials(
-                [[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                    credentialsId: 'aws_sandbox_credentials_jenkins',  // ID of credentials in Jenkins
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                ]])
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          credentialsId: 'jenkins_aws_sandbox',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
         sh 'molecule create'
         sh 'molecule converge'
       }
