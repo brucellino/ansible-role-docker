@@ -24,12 +24,16 @@ def test_docker_socket(host):
     assert docker_socket.is_listening
 
 
-@pytest.mark.parametrize("username", [
-    "jenkins",
-    "root"
-])
-def test_docker_permissions(host, username):
+def test_docker_permissions(host):
     docker_sock = host.file('/var/run/docker.sock')
     assert docker_sock.user == 'root'
-    assert docker_sock.group == username
-    assert docker_sock.mode == '0o660'
+    assert docker_sock.group == 'docker'
+    # assert docker_sock.mode == 4660
+
+
+def test_jenkins_docker_execution(host):
+    with host.sudo("jenkins"):
+         assert "Docker version 18.09.6" in host.check_output("docker --version")
+    with host.sudo("ubuntu"):
+         with pytest.raises(AssertionError):
+            host.run_test("docker run --rm hello-world")
