@@ -1,14 +1,4 @@
 ---
-- name: Ensure global npm packages are present
-  npm:
-    name: "{{ item }}"
-    global: true
-    state: present
-    production: true
-  loop: "{{ npm.packages }}"
-  tags:
-    - npm
-    - packages
 - name: Copy requirements over
   copy:
     dest: /tmp/requirements.txt
@@ -18,6 +8,7 @@
   tags:
     - pip
     - packages
+
 - name: Ensure python global packages are present
   pip:
     requirements: "requirements.txt"
@@ -26,10 +17,17 @@
   tags:
     - pip
     - packages
+
 - name: Ensure that docker-py is absent
   pip:
     name: docker-py
     state: absent
+
+- name: Ensure that bundler is present
+  gem:
+    name: bundler
+    state: present
+
 - name: Ensure Gemfiles are present
   copy:
     dest: "/tmp/{{ item }}"
@@ -38,15 +36,13 @@
     owner: root
   loop:
     - Gemfile
-    - Gemfile.lock
   tags:
     - gems
     - packages
+
 - name: bundle the gems
   bundler:
     gemfile: Gemfile
-    clean: no
-    user_install: yes
     state: present
     chdir: /tmp
   tags:

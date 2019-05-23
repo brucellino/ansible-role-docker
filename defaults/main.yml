@@ -1,18 +1,18 @@
 ---
 # defaults file for base-platform
 deb_repositories:
-  - deb http://security.ubuntu.com/ubuntu bionic-security multiverse
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic main restricted
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates main restricted
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic universe
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates universe
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic multiverse
+  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates universe
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates main restricted
   - deb http://it.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
   - deb http://archive.canonical.com/ubuntu bionic partner
   - deb http://security.ubuntu.com/ubuntu bionic-security main restricted
   - deb http://security.ubuntu.com/ubuntu bionic-security universe
   - deb http://security.ubuntu.com/ubuntu bionic-security multiverse
+
 base_packages:
   # LSB FTW!
   - lsb-security
@@ -37,6 +37,8 @@ packages:
   - python-pip
   - python-virtualenv
   # ruby and friends
+  - ruby
+  - ruby-dev
   # Javascript and friends
   # shell goodies
   # cloud APIs
@@ -62,6 +64,3 @@ docker:
   compose_url: https://github.com/docker/compose/releases/download
   compose_sha2: 4d618e19b91b9a49f36d041446d96a1a0a067c676330a4f25aca6bbd000de7a9
   compose_path: /usr/local/bin
-npm:
-  packages:
-    - prettier

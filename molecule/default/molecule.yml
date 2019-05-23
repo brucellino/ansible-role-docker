@@ -7,10 +7,10 @@ lint:
   name: yamllint
 platforms:
   - name: test-instance
-    image: ami-0204cddbf060b2420
+    image: ami-029bb09da31cbfdfc
     instance_type: t2.micro
-    vpc_subnet_id: subnet-05e9574d
-    region: eu-west-1
+    vpc_subnet_id: subnet-7354c33e
+    region: eu-central-1
 provisioner:
   name: ansible
   lint:
