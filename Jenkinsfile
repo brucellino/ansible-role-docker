@@ -6,7 +6,9 @@ pipeline {
   }
   stages {
     stage('QA') {
-      sh 'molecule lint'
+      steps {
+        sh 'molecule lint'
+      }
     }
     stage('Create') {
       steps {
