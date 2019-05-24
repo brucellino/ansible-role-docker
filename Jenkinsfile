@@ -7,11 +7,9 @@ pipeline {
   stages {
     stage('Create and Converge') {
       steps {
-        withCredentials([
+        withCredentials([[
         $class: 'AmazonWebServicesCredentialsBinding',
-        credentialsId: 'molecule_aws',
-        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'])
+        credentialsId: 'molecule_aws']])
         sh 'env'
         sh 'molecule lint'
         sh 'molecule create'
