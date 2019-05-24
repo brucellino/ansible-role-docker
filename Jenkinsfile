@@ -11,7 +11,7 @@ pipeline {
         sh 'printenv'
         sh 'molecule lint'
         sh 'pip3 install boto'
-        sh 'molecule --debug create'
+        sh 'molecule create'
         sh 'molecule converge' 
         }
       }

@@ -20,7 +20,7 @@
       ec2:
         state: absent
         instance_ids: "{{ item.instance_ids }}"
-        region: "{{ item.region | default('eu-west-1')}}"
+        region: "{{ item.region | default('eu-central-1')}}"
       register: server
       with_items: "{{ instance_conf }}"
       when: not skip_instances
