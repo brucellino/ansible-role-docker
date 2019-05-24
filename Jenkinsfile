@@ -1,15 +1,15 @@
 pipeline {
   agent {
-        node {
-          label 'molecule'
-        }
-      }
+    node {
+      label 'molecule'
+    }
+  }
   stages {
     stage('Create and Converge') {
       steps {
         withCredentials([[
-        $class: 'AmazonWebServicesCredentialsBinding',
-        credentialsId: 'molecule_aws']])
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: 'molecule_aws']])
         sh 'env'
         sh 'molecule lint'
         sh 'molecule create'
@@ -27,9 +27,9 @@ pipeline {
       }
     }
   }
-  post {
-    always { slackSend (token: slack_token, message: "Job completed") } 
-  }
+  // post {
+  //   always { slackSend (token: slack_token, message: "Job completed") } 
+  // }
   environment {
     slack_token = credentials('slack_hook')
   }
