@@ -10,7 +10,7 @@ pipeline {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',
           credentialsId: 'molecule_aws']])
-        sh 'env'
+        sh 'printenv'
         sh 'molecule lint'
         sh 'molecule create'
         sh 'molecule converge'
