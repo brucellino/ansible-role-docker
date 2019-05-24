@@ -22,11 +22,6 @@ pipeline {
         sh 'molecule converge'
       }
     }
-    stage('converge') {
-      steps {
-        
-      }
-    }
     stage('Verify') { 
       steps {
         sh 'molecule verify'
