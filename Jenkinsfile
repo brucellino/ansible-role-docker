@@ -1,15 +1,15 @@
 pipeline {
-  withCredentials([[
-    $class: 'AmazonWebServicesCredentialsBinding',
-    credentialsId: 'jenkins_aws_sandbox',
-    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
-  environment {
-    access_id = "${AWS_ACCESS_KEY_ID}"
-    secret_key = "AWS_SECRET_ACCESS_KEY"
-  }
   stages {
     stage('Create and Converge') {
+      withCredentials([[
+        $class: 'AmazonWebServicesCredentialsBinding',
+        credentialsId: 'jenkins_aws_sandbox',
+        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+      environment {
+        access_id = "${AWS_ACCESS_KEY_ID}"
+        secret_key = "AWS_SECRET_ACCESS_KEY"
+      }
       agent {
         node {
           label 'molecule'
