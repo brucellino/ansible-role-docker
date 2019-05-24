@@ -1,4 +1,7 @@
 pipeline {
+  options {
+    checkoutToSubdirectory('ansible-role-docker')
+  }
   agent {
     node {
       label 'molecule'
@@ -7,6 +10,8 @@ pipeline {
   stages {
     stage('QA') {
       steps {
+        sh 'echo $WORKSPACE'
+        sh 'pwd'
         sh 'molecule lint'
       }
     }
