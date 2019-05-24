@@ -1,6 +1,6 @@
 pipeline {
   options {
-    checkoutToSubdirectory('ansible-role-docker')
+    checkoutToSubdirectory('$WORKSPACE/ansible-role-docker')
   }
   agent {
     node {
@@ -12,6 +12,7 @@ pipeline {
       steps {
         sh 'echo $WORKSPACE'
         sh 'pwd'
+        sh 'ls'
         sh 'molecule lint'
       }
     }
