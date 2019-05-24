@@ -7,11 +7,12 @@ pipeline {
   stages {
     stage('Create and Converge') {
       steps {
-        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']])
+        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
         sh 'printenv'
         sh 'molecule lint'
         sh 'molecule create'
-        sh 'molecule converge'
+        sh 'molecule converge' 
+        }
       }
     }
     stage('Verify') { 
