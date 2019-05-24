@@ -9,8 +9,6 @@ pipeline {
       steps {
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
         sh 'printenv'
-        sh 'pip install boto'
-        sh 'pip install botocore'
         sh 'molecule lint'
         sh 'molecule --debug create'
         sh 'molecule converge' 
@@ -35,6 +33,7 @@ pipeline {
   // }
   environment {
     AWS_REGION="eu-central-1"
+    INTERPRETER_PYTHON="python3"
     slack_token = credentials('slack_hook')
   }
 }
