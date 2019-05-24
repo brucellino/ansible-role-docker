@@ -5,14 +5,17 @@ pipeline {
     }
   }
   stages {
-    stage('Create and Converge') {
+    stage('QA') {
+      sh 'molecule lint'
+    }
+    stage('Create') {
       steps {
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
-        sh 'printenv'
-        sh 'molecule lint'
-        sh 'pip3 install boto'
-        sh 'molecule --debug create'
-        sh 'molecule converge' 
+          sh 'pip3 install boto'
+          retry(3) { sh 'molecule --debug create' }
+      }
+        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]){
+          sh 'molecule converge'
         }
       }
     }
