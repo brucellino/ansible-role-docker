@@ -13,19 +13,24 @@ pipeline {
         sh 'echo $WORKSPACE'
         sh 'pwd'
         sh 'ls'
-        dir('ansible-role-docker')
-        sh 'molecule lint'
+        dir('ansible-role-docker') {
+          sh 'molecule lint'
+        }
       }
     }
     stage('Create') {
       steps {
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
           sh 'pip3 install boto'
-          retry(3) { sh 'molecule --debug create' }
-      }
+          retry(3) { dir('ansible-role-docker') {
+            sh 'molecule --debug create'
+            } 
+          }
+        }
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]){
-          dir('$WORKSPACE/ansible-role-docker/')
-          sh 'molecule converge'
+          dir('$WORKSPACE/ansible-role-docker/') {
+            sh 'molecule converge'
+          }
         }
       }
     }
