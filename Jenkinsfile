@@ -1,6 +1,6 @@
 pipeline {
   options {
-    checkoutToSubdirectory('$WORKSPACE/ansible-role-docker')
+    checkoutToSubdirectory('ansible-role-docker')
   }
   agent {
     node {
@@ -13,6 +13,7 @@ pipeline {
         sh 'echo $WORKSPACE'
         sh 'pwd'
         sh 'ls'
+        dir('ansible-role-docker')
         sh 'molecule lint'
       }
     }
@@ -23,6 +24,7 @@ pipeline {
           retry(3) { sh 'molecule --debug create' }
       }
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]){
+          dir('$WORKSPACE/ansible-role-docker/')
           sh 'molecule converge'
         }
       }
