@@ -39,6 +39,7 @@ packages:
   # ruby and friends
   - ruby
   - ruby-dev
+  - ruby-bundler
   # Javascript and friends
   # shell goodies
   # cloud APIs
