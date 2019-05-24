@@ -9,7 +9,7 @@ platforms:
   - name: test-instance
     image: ami-029bb09da31cbfdfc
     instance_type: t2.micro
-    vpc_subnet_id: subnet-7354c33e
+    vpc_subnet_id: subnet-fda20880
     region: eu-central-1
 provisioner:
   name: ansible
