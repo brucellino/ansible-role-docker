@@ -10,14 +10,16 @@ pipeline {
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
         sh 'printenv'
         sh 'molecule lint'
-        sh 'molecule create'
+        sh 'molecule --debug create'
         sh 'molecule converge' 
         }
       }
     }
     stage('Verify') { 
       steps {
-        sh 'molecule verify'
+        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
+          sh 'molecule verify'
+        }
       }
     }
     stage('Clean up') {
@@ -30,6 +32,7 @@ pipeline {
   //   always { slackSend (token: slack_token, message: "Job completed") } 
   // }
   environment {
+    AWS_REGION="eu-central-1"
     slack_token = credentials('slack_hook')
   }
 }
