@@ -1,4 +1,9 @@
 pipeline {
+  agent {
+        node {
+          label 'molecule'
+        }
+      }
   stages {
     stage('Create and Converge') {
       withCredentials([[
@@ -9,11 +14,6 @@ pipeline {
       environment {
         access_id = "${AWS_ACCESS_KEY_ID}"
         secret_key = "AWS_SECRET_ACCESS_KEY"
-      }
-      agent {
-        node {
-          label 'molecule'
-        }
       }
       steps {
         sh 'env'      
