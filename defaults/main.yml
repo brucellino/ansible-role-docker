@@ -37,6 +37,7 @@ base_packages:
 packages:
   # python and friends
   - python3-pip
+  - python-pip
   - python3-virtualenv
   # ruby and friends
   - ruby
@@ -62,6 +63,7 @@ docker:
     - docker-ce
     - docker-ce-cli
     - containerd.io
+    - docker-compose
   version: 18.06.3~ce~3-0~ubuntu
   compose_version: 1.23.2
   compose_url: https://github.com/docker/compose/releases/download
