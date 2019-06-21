@@ -177,7 +177,7 @@ GEM
     celluloid-supervision (0.20.6)
       timers (>= 4.1.1)
     character_set (1.1.2)
-    chartkick (3.0.2)
+    chartkick (3.2.0)
     chef (0.8.10)
       bunny (>= 0.6.0)
       erubis
@@ -996,7 +996,7 @@ DEPENDENCIES
   celluloid-fsm (~> 0.20.5)
   celluloid-pool (~> 0.20.5)
   celluloid-supervision (~> 0.20.6)
-  chartkick (~> 3.0)
+  chartkick (~> 3.2.0)
   chef (~> 0.8.10)
   chef-config (~> 14.11)
   chef-zero (~> 14.0)
