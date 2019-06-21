@@ -14,6 +14,7 @@
     requirements: "requirements.txt"
     chdir: /tmp
     state: present
+    executable: pip3
   tags:
     - pip
     - packages
@@ -22,6 +23,7 @@
   pip:
     name: docker-py
     state: absent
+    executable: pip3
 
 - name: Ensure that bundler is present
   gem:
