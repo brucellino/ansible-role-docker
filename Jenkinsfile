@@ -4,7 +4,7 @@ pipeline {
   }
   agent {
     node {
-      label 'molecule'
+      label 'ec2'
     }
   }
   stages {
@@ -24,7 +24,7 @@ pipeline {
           sh 'pip3 install boto'
           retry(3) { dir('ansible-role-docker') {
             sh 'molecule --debug create'
-            } 
+            }
           }
         }
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]){
@@ -34,7 +34,7 @@ pipeline {
         }
       }
     }
-    stage('Verify') { 
+    stage('Verify') {
       steps {
         withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
           sh 'molecule verify'
@@ -48,7 +48,7 @@ pipeline {
     }
   }
   // post {
-  //   always { slackSend (token: slack_token, message: "Job completed") } 
+  //   always { slackSend (token: slack_token, message: "Job completed") }
   // }
   environment {
     AWS_REGION="eu-central-1"
