@@ -20,14 +20,14 @@ pipeline {
     }
     stage('Create') {
       steps {
-        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
+        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_sandbox_credentials_jenkins']]) {
           sh 'pip3 install boto'
           retry(3) { dir('ansible-role-docker') {
             sh 'molecule --debug create'
             }
           }
         }
-        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]){
+        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_sandbox_credentials_jenkins']]){
           dir('$WORKSPACE/ansible-role-docker/') {
             sh 'molecule converge'
           }
@@ -36,7 +36,7 @@ pipeline {
     }
     stage('Verify') {
       steps {
-        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'molecule_aws']]) {
+        withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_sandbox_credentials_jenkins']]) {
           sh 'molecule verify'
         }
       }
