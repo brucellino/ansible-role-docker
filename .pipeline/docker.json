@@ -7,8 +7,8 @@
       "region": "eu-central-1",
       "instance_type": "t2.small",
       "ssh_username": "ubuntu",
-      "ami_name": "Docker Image {{timestamp}}",
-      "ami_description": "Docker image {{`user env`}}",
+      "ami_name": "Docker Image {{ `user env` }}-{{ timestamp }}",
+      "ami_description": "Docker-{{`user env`}}",
       "associate_public_ip_address": true,
       "force_deregister": true,
       "source_ami": "ami-009c174642dba28e4"

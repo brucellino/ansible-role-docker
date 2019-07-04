@@ -5,3 +5,6 @@
     - role: ansible-role-docker
       become: true
       when: ansible_virtualization_type != 'docker'
+      ssh_users:
+        - username: jenkins
+          pubkey: "{{ lookup('file','files/aws_build_slave.pub') | default('omit')  }}"

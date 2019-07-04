@@ -72,3 +72,4 @@ docker:
 docker_users:
   - jenkins
   - ubuntu
+ssh_users: []

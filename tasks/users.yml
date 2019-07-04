@@ -19,3 +19,12 @@
     path: /var/run/docker.sock
     group: docker
     owner: root
+
+- name: Ensure Authorized keys
+  authorized_key:
+    user: "{{ item.username }}"
+    key: "{{ item.pubkey }}"
+    comment: Ansible Managed
+    exclusive: no
+    state: present
+  loop: "{{ ssh_users }}"
