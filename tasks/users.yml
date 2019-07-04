@@ -1,0 +1,21 @@
+---
+- name: Add docker group
+  group:
+    name: docker
+    state: present
+    gid: 200
+
+- name: Add users to the docker group
+  user:
+    name: "{{ item }}"
+    groups:
+      - docker
+    append: true
+    shell: /bin/bash
+  loop: "{{ docker_users }}"
+
+- name: Allow docker group members to use docker
+  file:
+    path: /var/run/docker.sock
+    group: docker
+    owner: root

@@ -69,3 +69,6 @@ docker:
   compose_url: https://github.com/docker/compose/releases/download
   compose_sha2: 4d618e19b91b9a49f36d041446d96a1a0a067c676330a4f25aca6bbd000de7a9
   compose_path: /usr/local/bin
+docker_users:
+  - jenkins
+  - ubuntu

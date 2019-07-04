@@ -1,0 +1,41 @@
+{
+  "_comment": "Packer template for testing the Ansible roles applied to Docker",
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "profile": "default",
+      "region": "eu-central-1",
+      "instance_type": "t2.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "Docker Image {{timestamp}}",
+      "ami_description": "Docker image {{`user env`}}",
+      "associate_public_ip_address": true,
+      "force_deregister": true,
+      "source_ami": "ami-009c174642dba28e4"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done"
+      ],
+      "only": ["amazon-ebs"]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get install -y python python3"
+      ],
+      "only": ["amazon-ebs"]
+    },
+    {
+      "type": "ansible",
+      "playbook_file": "playbook.yml",
+      "user": "ubuntu",
+      "ansible_env_vars": ["ANSIBLE_ROLES_PATH=$PWD/../../"],
+      "groups": "buildslave",
+      "only": ["amazon-ebs"]
+    }
+  ]
+}

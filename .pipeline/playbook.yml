@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-role-docker
+      become: true
+      when: ansible_virtualization_type != 'docker'

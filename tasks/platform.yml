@@ -23,28 +23,10 @@
 
 - name: Install Docker
   package:
-    name: "{{ item }}"
+    name:   "{{ item }}"
     state: present
   loop: "{{ docker.packages }}"
 
-- name: Add docker group
-  group:
-    name: docker
-    state: present
-    gid: 200
-
-- name: Add jenkins user to the group
-  user:
-    name: jenkins
-    groups: docker
-    append: true
-    shell: /bin/bash
-
-- name: Allow docker group members to use docker
-  file:
-    path: /var/run/docker.sock
-    group: docker
-    owner: root
 
 - name: Docker should run on start
   service:
