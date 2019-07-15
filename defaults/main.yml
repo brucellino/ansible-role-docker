@@ -1,17 +1,17 @@
 ---
 # defaults file for base-platform
 deb_repositories:
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic main restricted
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic universe
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic multiverse
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates universe
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates multiverse
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates main restricted
-  - deb http://it.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
-  - deb http://archive.canonical.com/ubuntu bionic partner
-  - deb http://security.ubuntu.com/ubuntu bionic-security main restricted
-  - deb http://security.ubuntu.com/ubuntu bionic-security universe
-  - deb http://security.ubuntu.com/ubuntu bionic-security multiverse
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} main restricted"
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} universe"
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} multiverse"
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates universe"
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates multiverse"
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates main restricted"
+  - "deb http://it.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-backports main restricted universe multiverse"
+  - "deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
+  - "deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security main restricted"
+  - "deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security universe"
+  - "deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security multiverse"
 
 base_packages:
   # LSB FTW!
