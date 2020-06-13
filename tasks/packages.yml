@@ -1,9 +1,9 @@
 ---
-- name: Ensure repositories are configured
+- name: 📦 🔎
   apt_repository:
     repo: "{{ item }}"
     state: present
-    update_cache: false
+    update_cache: true
     mode: "0644"
     validate_certs: true
   loop: "{{ deb_repositories }}"
@@ -11,24 +11,24 @@
     - apt
     - repos
 
-- name: Ensure base packages are installed
+- name: 📦 🔈
   package:
     state: present
-    name: "{{ item }}"
+    name: "{{ base_packages }}"
     use: auto
-  loop: "{{ base_packages }}"
+    update_cache: true
   tags:
     - packages
 
-- name: Ensure that the rest of the packages are installed
+- name: 📦 🔉
   package:
     state: present
-    name: "{{ item }}"
+    name: "{{ packages }}"
     use: auto
-  loop: "{{ packages }}"
   tags:
     - packages
-- name: Ensure extra packages are present
+
+- name: 📦 🔊
   apt:
     autoremove: no
     force: no
