@@ -9,3 +9,7 @@
     #   wait_for:
     #     path: /var/log/unattended-upgrades/unattended-upgrades.log
     #     search_regex: "^.*INFO All upgrades installed$"
+    - name: 🐍 🥈 👻
+      package:
+        name: python
+        state: absent

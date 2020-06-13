@@ -13,13 +13,13 @@ platforms:
     region: eu-central-1
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto
+      callback_whitelist: "yaml,profile_tasks"
+      stdout_callback: "yaml"
   lint:
     name: ansible-lint
-    config_options:
-      defaults:
-        interpreter_python: auto
-        callback_whitelist: yaml, profile_tasks
-        stdout_callback: yaml, profile_tasks
 
 scenario:
   name: default
