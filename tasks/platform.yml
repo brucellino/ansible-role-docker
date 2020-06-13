@@ -1,19 +1,19 @@
 ---
 # These tasks ensure that the base platform is ready for hacking
-- name: Ensure necessary packages for docker
   package:
+    - name: 🐋 📦
     name: "{{ item }}"
     state: present
   loop: "{{ docker.prerequisite_packages }}"
 
-- name: Ensure apt key is present
+- name: 🐋 📦 🔑
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
     validate_certs: true
     id: "{{ docker.gpg_key_id }}"
 
-- name: Add Docker APT repo
+- name: 🐋 📦 🔎
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
     state: present
@@ -21,21 +21,21 @@
     mode: 0644
     validate_certs: true
 
-- name: Install Docker
+- name: 🐋 📦 ✅
   package:
-    name:   "{{ item }}"
+    name: "{{ item }}"
     state: present
   loop: "{{ docker.packages }}"
 
 
-- name: Docker should run on start
+- name: 🐋 💽 🆙
   service:
     name: docker
     use: auto
     enabled: true
     state: started
 
-- name: Install Docker Compose
+- name: 🐋 📦 🧰
   get_url:
     dest: "{{ docker.compose_path }}/docker-compose"
     url: "{{ docker.compose_url }}/{{ docker.compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
