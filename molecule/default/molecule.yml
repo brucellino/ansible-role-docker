@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: test-instance
+  - name: docker-role-test-instance
     image: ami-029bb09da31cbfdfc
     instance_type: t3.small
     vpc_subnet_id: subnet-fda20880
@@ -15,6 +15,12 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+    config_options:
+      defaults:
+        interpreter_python: auto
+        callback_whitelist: yaml, profile_tasks
+        stdout_callback: yaml, profile_tasks
+
 scenario:
   name: default
 verifier:

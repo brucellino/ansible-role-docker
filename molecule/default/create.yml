@@ -68,6 +68,7 @@
         region: "{{ item.region }}"
         instance_tags:
           instance: "{{ item.name }}"
+          Name: "{{ item.name }}"
         wait: true
         assign_public_ip: true
         exact_count: 1
@@ -123,4 +124,4 @@
 
     - name: Wait for boot process to finish
       pause:
-        minutes: 2
+        seconds: 20

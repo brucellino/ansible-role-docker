@@ -1,9 +1,11 @@
 ---
-- name: Prepare
+- name: Wait till ready
   hosts: all
-  gather_facts: false
   tasks:
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal python-zipstream)
-      become: true
-      changed_when: false
+    - name: Wait for cloud init
+      wait_for:
+        path: /var/lib/cloud/instance/boot-finished
+    # - name: Wait for unattended upgrades to finish
+    #   wait_for:
+    #     path: /var/log/unattended-upgrades/unattended-upgrades.log
+    #     search_regex: "^.*INFO All upgrades installed$"
