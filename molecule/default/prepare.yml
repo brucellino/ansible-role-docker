@@ -1,8 +1,8 @@
 ---
-- name: Wait till ready
+- name: ⏰
   hosts: all
   tasks:
-    - name: Wait for cloud init
+    - name: ☁ ✅
       wait_for:
         path: /var/lib/cloud/instance/boot-finished
     # - name: Wait for unattended upgrades to finish
