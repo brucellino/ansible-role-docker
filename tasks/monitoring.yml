@@ -1,0 +1,13 @@
+---
+- name: ☁ 👀 ⬇
+  unarchive:
+    dest: "/home/ubuntu"
+    src: https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip
+    remote_src: true
+
+- name: ☁ 👀 ⏰ ✅
+  cron:
+    name: send monitoring data
+    job: "~/aws-scripts-mon/mon-put-instance-data.pl --mem-avail --mem-used --mem-used-incl-cache-buff --mem-util --disk-space-util --disk-path=/ --disk-space-avail --from-cron"
+    minute: "*/5"
+    user: ubuntu

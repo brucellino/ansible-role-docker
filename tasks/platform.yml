@@ -1,7 +1,7 @@
 ---
 # These tasks ensure that the base platform is ready for hacking
+- name: 🐋 📦
   package:
-    - name: 🐋 📦
     name: "{{ item }}"
     state: present
   loop: "{{ docker.prerequisite_packages }}"

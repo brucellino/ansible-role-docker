@@ -1,15 +1,13 @@
 ---
-- name: Copy requirements over
+- name: 🐍 📦 ➡
   copy:
     dest: /tmp/requirements.txt
     src: requirements.txt
-    group: root
-    owner: root
   tags:
     - pip
     - packages
 
-- name: Ensure python global packages are present
+- name: 🐍 📦 ✅
   pip:
     requirements: "requirements.txt"
     chdir: /tmp
@@ -19,30 +17,28 @@
     - pip
     - packages
 
-- name: Ensure that docker-py is absent
+- name: 🐋 ❤ 🐍
   pip:
     name: docker-py
     state: absent
     executable: pip3
 
-- name: Ensure that bundler is present
+- name: 💎 🤗
   gem:
     name: bundler
     state: present
 
-- name: Ensure Gemfiles are present
+- name: 💎 🔍
   copy:
     dest: "/tmp/{{ item }}"
     src: "{{ item }}"
-    group: root
-    owner: root
   loop:
     - Gemfile
   tags:
     - gems
     - packages
 
-- name: bundle the gems
+- name: 💎 ✅
   bundler:
     gemfile: Gemfile
     state: present
