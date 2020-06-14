@@ -46,7 +46,9 @@ packages:
   # Javascript and friends
   # shell goodies
   # cloud APIs
-extra_packages: []
+extra_packages:
+  - libwww-perl
+  - libdatetime-perl
 gems:
   - inspec
   - rubocop
